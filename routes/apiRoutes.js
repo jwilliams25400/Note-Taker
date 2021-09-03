@@ -10,12 +10,6 @@ router.get('/notes', (req, res) => {
     res.json(notesArr);
 });
 
-//     (err, data) => {
-//         if (err) throw err;
-//         res.status(201).send(data);
-//     })
-// })
-
 // function post new notes to to db.json
 router.post('/notes', (req, res) => {
     console.log(req.body);

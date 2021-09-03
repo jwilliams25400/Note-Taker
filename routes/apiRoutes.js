@@ -27,6 +27,14 @@ router.post('/notes', (req, res) => {
     const revisedArr = fs.writeFileSync("./db/db.json", JSON.stringify(newNotesArr))
     res.json(revisedArr);
 });
+ // deleting notes using unique id 
+ router.delete("/notes/:id", (req, res) => {
+     const notes = JSON.parse(fs.readFileSync(".db/db.json"));
+     const remainNotes = notes.filter((note) => note.id !== req.params.id);
+     console.log(remainNotes);
+     leftOverNotes = fs.writeFileSync("./db/db.json", JSON.stringify(this.remainNotes));
+     res.json(leftOverNotes);
+ })
 
 
 module.exports = router

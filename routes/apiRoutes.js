@@ -5,26 +5,34 @@ const { v4: uuidv4 } = require("uuid");
 
 //set routes for api this gets notes saved in db.json
 router.get('/notes', (req, res) => {
-    fs.readFile("../db/db.json", (err, data) => {
-        if (err) throw err;
-        res.status(201).send(data);
-    })
-})
+    const notes = fs.readFile("../db/db.json", "utf8");
+    const notesArr = JSON.parse(notes);
+    res.json(notesArr);
+});
+
+//     (err, data) => {
+//         if (err) throw err;
+//         res.status(201).send(data);
+//     })
+// })
 
 // function post new notes to to db.json
 router.post('/notes', (req, res) => {
     console.log(req.body);
     // req.body.id = uuid();    
-    fs.readFile("./db/db.json", (err, data) => {
-        if (err) throw err;
-        req.body.id = uuidv4();
-        fs.writeFile("./db/db.json", JSON.stringify(json), (err) => {
-            if (err) throw err;
-            console.log("Saved!");
-            res.send(req.body)
+    const notes = fs.readFile("./db/db.json", "utf8");
+    const notesArr = JSON.parse(notes);
+    console.log(req.body);
+    const notesObj = {
+        title: req.body.title,
+        text: req.body.text,
+        id: uuidv4()
+    }
+    const newNotesArr = notesArr.concat(notesObj);
+    console.log(newNotesArr);
+    const revisedArr = fs.writeFileSync("./db/db.json", JSON.stringify(newNotesArr))
+    res.json(revisedArr);
+});
 
-        })
 
-    })
-})
 module.exports = router

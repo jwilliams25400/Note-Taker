@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 
 // if there is no route matching, resend to homepage
 router.get("*", (req, res) => {
-    res.sendfile(path.join(__dirname, "../public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 module.exports = router;

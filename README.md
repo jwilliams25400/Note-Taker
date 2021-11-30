@@ -39,6 +39,8 @@ https://note-taker-jw21.herokuapp.com/
 to ensure the repo runs open the terminal and run the following: 
 ```npm i express, npm i uuid, and heroku```
 
+![](images/noteTaker.jpg)
+
 --------------------
 
 ## Usage:
